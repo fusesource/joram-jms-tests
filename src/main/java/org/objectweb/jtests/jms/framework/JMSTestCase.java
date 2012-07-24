@@ -79,7 +79,7 @@ public abstract class JMSTestCase extends TestCase
    protected Properties getProviderProperties() throws IOException
    {
       Properties props = new Properties();
-      props.load(getClass().getClassLoader().getResourceAsStream(JMSTestCase.PROP_FILE_NAME));
+      props.load(getClass().getClassLoader().getResourceAsStream(System.getProperty("joram.jms.test.file", JMSTestCase.PROP_FILE_NAME)));
       return props;
    }
 
