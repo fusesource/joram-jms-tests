@@ -153,6 +153,7 @@ public abstract class PubSubTestCase extends JMSTestCase
       }
       catch (Exception ignored)
       {
+        ignored.printStackTrace();
       }
       finally
       {
