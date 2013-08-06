@@ -14,6 +14,7 @@
 package org.objectweb.jtests.jms.conform.queue;
 
 import java.util.Enumeration;
+import java.util.concurrent.TimeUnit;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -95,6 +96,7 @@ public class QueueBrowserTest extends PTPTestCase
          msg = (TextMessage)m;
          Assert.assertEquals("testBrowser:message_2", msg.getText());
 
+         TimeUnit.SECONDS.sleep(1);
          // ask the browser to browse the sender's session
          enumeration = receiverBrowser.getEnumeration();
          // check that there is no messages in the queue
@@ -105,6 +107,10 @@ public class QueueBrowserTest extends PTPTestCase
       catch (JMSException e)
       {
          fail(e);
+      }
+      catch (InterruptedException e)
+      {
+          fail(e);
       }
    }
 
@@ -129,6 +135,7 @@ public class QueueBrowserTest extends PTPTestCase
          sender.send(message_1);
          sender.send(message_2);
 
+         TimeUnit.SECONDS.sleep(1);
          Enumeration enumeration = senderBrowser.getEnumeration();
          int count = 0;
          while (enumeration.hasMoreElements())
@@ -144,6 +151,10 @@ public class QueueBrowserTest extends PTPTestCase
       catch (JMSException e)
       {
          fail(e);
+      }
+      catch (InterruptedException e)
+      {
+          fail(e);
       }
    }
 
